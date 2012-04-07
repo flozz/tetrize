@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 
 public class TetrizePanel extends JPanel {
 
-	private int BLOCK_SIZE = 32;
-
 	private Image resBackground = null;
 	private Image resTileset = null;
 
@@ -22,22 +20,22 @@ public class TetrizePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
         g.drawImage(this.resBackground, 0, 0, this);
-        this.drawBlock(g, 0, 1, 1);
-        this.drawBlock(g, 2, 0, 2);
-        this.drawBlock(g, 4, 11, 19);
+        this.drawBlock(g, Block.BLUE, 1, 1);
+        this.drawBlock(g, Block.GREEN, 0, 2);
+        this.drawBlock(g, Block.RED, 11, 19);
 	}
 
-	private void drawBlock(Graphics g, int blockID, int cellX, int cellY) {
+	private void drawBlock(Graphics g, int blockColor, int cellX, int cellY) {
 		g.drawImage(
-				this.resTileset, //Image
-				cellX * this.BLOCK_SIZE, //From x pos (dest)
-				cellY * this.BLOCK_SIZE, //From y pos (dest)
-				cellX * this.BLOCK_SIZE + this.BLOCK_SIZE, //To x pos (dest)
-				cellY * this.BLOCK_SIZE + this.BLOCK_SIZE, //To y pos (dest)
-				blockID * this.BLOCK_SIZE, //From x pos (src)
-				0, //From y pos(src)
-				blockID * this.BLOCK_SIZE + this.BLOCK_SIZE, //To x pos (src)
-				this.BLOCK_SIZE, //To y pos (src)
+				this.resTileset,                             //Source image
+				cellX * Game.BLOCK_SIZE,                     //From x pos (dest)
+				cellY * Game.BLOCK_SIZE,                     //From y pos (dest)
+				cellX * Game.BLOCK_SIZE + Game.BLOCK_SIZE,   //To x pos (dest)
+				cellY * Game.BLOCK_SIZE + Game.BLOCK_SIZE,   //To y pos (dest)
+				blockColor * Game.BLOCK_SIZE,                   //From x pos (src)
+				0,                                           //From y pos(src)
+				blockColor * Game.BLOCK_SIZE + Game.BLOCK_SIZE, //To x pos (src)
+				Game.BLOCK_SIZE,                             //To y pos (src)
 				this);
 	}
 
