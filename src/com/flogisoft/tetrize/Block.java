@@ -22,36 +22,62 @@
 
 package com.flogisoft.tetrize;
 
-import java.awt.Insets;
-import javax.swing.SwingUtilities;
+import java.awt.Graphics;
 
 
 /**
- * Home sweet home...
+ * A Tetromino base block.
  * 
  * @author Fabien LOISON
  */
-public class Launcher {
+public class Block {
+
+	//Some const
+	final public static int PURPLE = 0;
+	final public static int PINK = 1;
+	final public static int RED = 2;
+	final public static int NAVY = 3;
+	final public static int BLUE = 4;
+	final public static int GREEN = 5;
+	final public static int ORANGE = 6;
+
+	//Color of the block
+	private int color;
+
+	//Position of the block
+	private int posX; //Cell
+	private int posY; //Cell
 
 	/**
-	 * The entry point of the program.
+	 * The constructor of the Block class.
 	 * 
-	 * @param args no comment...
+	 * @param color the block's color (Block.PURPLE, Block.PINK,...)
+	 * @param posX the X position of the block (in cell)
+	 * @param posY the Y position of the block (in cell)
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			private TetrizeWindow window = null;
+	public Block(int color, int posX, int posY) {
+		this.color = color;
+		this.posX = posX;
+		this.posY = posY;
+	}
 
-			public void run() {
-				this.window  = new TetrizeWindow();
-				this.window.setVisible(true);
-				//Window's size
-				Insets insets = this.window.getInsets();
-				this.window.setSize(
-						Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
-						Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
-						);
-			}
-		});
+	/**
+	 * Draws the block on the Board.
+	 * 
+	 * @param g the Graphics instance.
+	 * @param board the board
+	 */
+	public void draw(Graphics g, Board board) {
+		g.drawImage(
+			Board.RES_BLOCKS,                               //Source image
+			this.posX * Game.BLOCK_SIZE,                    //From x pos (dest)
+			this.posY * Game.BLOCK_SIZE,                    //From y pos (dest)
+			this.posX * Game.BLOCK_SIZE + Game.BLOCK_SIZE,  //To x pos (dest)
+			this.posY * Game.BLOCK_SIZE + Game.BLOCK_SIZE,  //To y pos (dest)
+			this.color * Game.BLOCK_SIZE,                   //From x pos (src)
+			0,                                              //From y pos(src)
+			this.color * Game.BLOCK_SIZE + Game.BLOCK_SIZE, //To x pos (src)
+			Game.BLOCK_SIZE,                                //To y pos (src)
+			board);
 	}
 }

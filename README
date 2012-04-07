@@ -1,0 +1,15 @@
+==============================================================================
+                                T E T R I Z E                                 
+==============================================================================
+
+Tetrize is an implementation of the famous Tetris game, in Java.
+
+
+Copyright:
+----------
+
+    src/*
+	    Copyright (C) 2012  Fabien LOISON <flo at flogisoft dot com>
+
+	src/com/flogisoft/tetrize/res/*
+	    Copyright (C) 2011  Adrien VIGNERON <adrienvigneron at mailoo dot org>

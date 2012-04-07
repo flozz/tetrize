@@ -22,36 +22,22 @@
 
 package com.flogisoft.tetrize;
 
-import java.awt.Insets;
-import javax.swing.SwingUtilities;
-
 
 /**
- * Home sweet home...
+ * Contains all the variables of a game.
  * 
- * @author Fabien LOISON
+ * @author Fabien LOSION
  */
-public class Launcher {
+public class Game {
 
-	/**
-	 * The entry point of the program.
-	 * 
-	 * @param args no comment...
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			private TetrizeWindow window = null;
+	final static public int WIDTH = 12; //Cell
+	final static public int HEIGHT = 20; //Cell
+	final static public int BLOCK_SIZE = 32; //Pixels
 
-			public void run() {
-				this.window  = new TetrizeWindow();
-				this.window.setVisible(true);
-				//Window's size
-				Insets insets = this.window.getInsets();
-				this.window.setSize(
-						Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
-						Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
-						);
-			}
-		});
+	private Block blocks[][];
+
+	public Game() {
+		//
 	}
+
 }

@@ -22,36 +22,45 @@
 
 package com.flogisoft.tetrize;
 
-import java.awt.Insets;
-import javax.swing.SwingUtilities;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 
 /**
- * Home sweet home...
+ * The drawable surface.
  * 
  * @author Fabien LOISON
  */
-public class Launcher {
+public class Board extends JPanel {
+
+	public static Image RES_BACKGROUND = null;
+	public static Image RES_BLOCKS = null;
 
 	/**
-	 * The entry point of the program.
-	 * 
-	 * @param args no comment...
+	 * Loads the images resources from files.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			private TetrizeWindow window = null;
+	public void loadResources() {
+		try {
+			Board.RES_BACKGROUND = ImageIO.read(getClass().getResourceAsStream(
+					"/com/flogisoft/tetrize/res/background.png"));
+			Board.RES_BLOCKS = ImageIO.read(getClass().getResourceAsStream(
+					"/com/flogisoft/tetrize/res/tileset.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-			public void run() {
-				this.window  = new TetrizeWindow();
-				this.window.setVisible(true);
-				//Window's size
-				Insets insets = this.window.getInsets();
-				this.window.setSize(
-						Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
-						Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
-						);
-			}
-		});
+	/**
+	 * Refresh the JPanel.
+	 * 
+	 * @param g the Graphics instance.
+	 */
+	public void paintComponent(Graphics g) {
+        g.drawImage(this.RES_BACKGROUND, 0, 0, this);
+        Block b0 = new Block(Block.BLUE, 1, 1);
+        b0.draw(g, this);
 	}
 }
