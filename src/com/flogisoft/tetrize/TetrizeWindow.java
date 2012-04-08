@@ -22,6 +22,7 @@
 
 package com.flogisoft.tetrize;
 
+import java.awt.Insets;
 import javax.swing.JFrame;
 
 
@@ -46,5 +47,22 @@ public class TetrizeWindow extends JFrame {
 		this.board = new Board();
 		this.board.loadResources();
 		this.setContentPane(this.board);
+		//Display the window
+		this.setVisible(true);
+		//Window's size
+		Insets insets = this.getInsets();
+		this.setSize(
+			Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
+			Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
+			);
+	}
+
+	/**
+	 * Get the Board.
+	 * 
+	 * @return the board instance.
+	 */
+	public Board getBoard() {
+		return this.board;
 	}
 }

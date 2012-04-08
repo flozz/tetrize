@@ -39,19 +39,7 @@ public class Launcher {
 	 * @param args no comment...
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			private TetrizeWindow window = null;
-
-			public void run() {
-				this.window  = new TetrizeWindow();
-				this.window.setVisible(true);
-				//Window's size
-				Insets insets = this.window.getInsets();
-				this.window.setSize(
-						Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
-						Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
-						);
-			}
-		});
+		TetrizeWindow window = new TetrizeWindow();
+		Game game = new Game(window.getBoard());
 	}
 }

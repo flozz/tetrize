@@ -22,54 +22,34 @@
 
 package com.flogisoft.tetrize;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
- * Contains all the variables of a game.
+ * Update the blocks and refresh the screen.
  * 
- * @author Fabien LOSION
+ * @author Fabien LOISON
  */
-public class Game {
+public class RefreshNUpdate extends TimerTask {
 
-	final static public int WIDTH = 12; //Cell
-	final static public int HEIGHT = 20; //Cell
-	final static public int BLOCK_SIZE = 32; //Pixels
-
-	public static List<Block> blocks = new ArrayList<Block>();
-
-	public Board board;
+	private Game game;
 
 	/**
 	 * The constructor.
 	 * 
-	 * @param board the Board instance.
+	 * @param game the Game instance.
 	 */
-	public Game(Board board) {
-		this.board = board;
-
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
-
-		//FIXME =================================================================
-		Game.blocks.add(new Block(Block.BLUE, 0, 0));
-		Game.blocks.get(0).fall(10);
-		Game.blocks.add(new Block(Block.GREEN, 1, 0));
-		Game.blocks.get(1).fall(15);
-		Game.blocks.add(new Block(Block.RED, 2, 0));
-		Game.blocks.get(2).fall(5);
+	public RefreshNUpdate(Game game) {
+		super();
+		this.game = game;
 	}
 
 	/**
-	 * Apply the unavoidable gravity law on each blocks.
+	 * All the actions to do.
 	 */
-	public void applyGravity() {
-		for (Block block : Game.blocks)
-		{
-			block.applyGravity();
-		}
+	public void run() {
+		this.game.applyGravity();
+		this.game.board.repaint();
 	}
 
 }

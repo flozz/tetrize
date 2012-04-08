@@ -60,7 +60,10 @@ public class Board extends JPanel {
 	 */
 	public void paintComponent(Graphics g) {
         g.drawImage(this.RES_BACKGROUND, 0, 0, this);
-        Block b0 = new Block(Block.BLUE, 1, 1);
-        b0.draw(g, this);
+
+        for (Block block : Game.blocks)
+		{
+			block.draw(g, this);
+		}
 	}
 }

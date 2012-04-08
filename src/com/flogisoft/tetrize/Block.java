@@ -47,6 +47,10 @@ public class Block {
 	//Position of the block
 	private int posX; //Cell
 	private int posY; //Cell
+	private int offset = 0;
+
+	//Falling
+	private int fallNbLines = 0;
 
 	/**
 	 * The constructor of the Block class.
@@ -71,13 +75,37 @@ public class Block {
 		g.drawImage(
 			Board.RES_BLOCKS,                               //Source image
 			this.posX * Game.BLOCK_SIZE,                    //From x pos (dest)
-			this.posY * Game.BLOCK_SIZE,                    //From y pos (dest)
+			this.posY * Game.BLOCK_SIZE + this.offset,      //From y pos (dest)
 			this.posX * Game.BLOCK_SIZE + Game.BLOCK_SIZE,  //To x pos (dest)
-			this.posY * Game.BLOCK_SIZE + Game.BLOCK_SIZE,  //To y pos (dest)
+			this.posY * Game.BLOCK_SIZE + Game.BLOCK_SIZE + this.offset,  //To y pos (dest)
 			this.color * Game.BLOCK_SIZE,                   //From x pos (src)
 			0,                                              //From y pos(src)
 			this.color * Game.BLOCK_SIZE + Game.BLOCK_SIZE, //To x pos (src)
 			Game.BLOCK_SIZE,                                //To y pos (src)
 			board);
+	}
+	
+	/**
+	 * Makes the blocks falling from nbLines lines.
+	 * 
+	 * @param nbLines Falling from ? lines.
+	 */
+	public void fall(int nbLines) {
+		this.fallNbLines = nbLines;
+	}
+
+	/**
+	 * Apply the gravity law... if the block have to fall.
+	 */
+	public void applyGravity() {
+		if (this.fallNbLines <= 0) {
+			return;
+		}
+		this.offset += 8;
+		if (this.offset >= Game.BLOCK_SIZE) {
+			this.offset = 0;
+			this.posY += 1;
+			this.fallNbLines -= 1;
+		}
 	}
 }
