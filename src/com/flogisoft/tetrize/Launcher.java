@@ -22,9 +22,6 @@
 
 package com.flogisoft.tetrize;
 
-import java.awt.Insets;
-import javax.swing.SwingUtilities;
-
 
 /**
  * Home sweet home...

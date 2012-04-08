@@ -60,7 +60,7 @@ public class Tetromino {
 
 	//Tetromino's position
 	protected int posX = (Game.WIDTH - 4) / 2;
-	protected int posY = 4; //FIXME
+	protected int posY = 4; //FIXME -4
 	protected int offset = 0;
 
 	/**
@@ -68,6 +68,13 @@ public class Tetromino {
 	 */
 	public void rotate() {
 		this.rotation = (this.rotation + 1) % 4;
+		if (this.checkBorderLeftCollide()) {
+			this.posX += 1;
+			return;
+		}
+		if (this.checkBorderRightCollide()) {
+			this.posX -= 1;
+		}
 	}
 
 	/**
@@ -94,5 +101,67 @@ public class Tetromino {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Move the tetromino to the left.
+	 */
+	public void moveLeft() {
+		this.posX -= 1;
+		if (this.checkBorderLeftCollide()) {
+			this.posX += 1;
+		}
+	}
+
+	/**
+	 * Move the tetromino to the right.
+	 */
+	public void moveRight() {
+		this.posX += 1;
+		if (this.checkBorderRightCollide()) {
+			this.posX -= 1;
+		}
+	}
+
+	/**
+	 * Check if there is a collision between the tetromino and the left border.
+	 * 
+	 * @return true if there is a collide.
+	 */
+	private boolean checkBorderLeftCollide() {
+		if (this.posX >= 0) {
+			return false;
+		}
+
+		for (int y=0 ; y<4 ; y++) {
+			for (int x=0 ; x<0-this.posX ; x++) {
+				if (this.tetromino[this.rotation][y*4+x] == 1) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if there is a collision between the tetromino and the right border.
+	 * 
+	 * @return true if there is a collide.
+	 */
+	private boolean checkBorderRightCollide() {
+		if (this.posX <= Game.WIDTH-4) {
+			return false;
+		}
+
+		for (int y=0 ; y<4 ; y++) {
+			for (int x=4+(Game.WIDTH-this.posX-4) ; x<4 ; x++) {
+				if (this.tetromino[this.rotation][y*4+x] == 1) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 }

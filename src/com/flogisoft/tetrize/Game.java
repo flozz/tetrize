@@ -59,7 +59,7 @@ public class Game {
 			Game.blocks.add(new Block(i%7, i, i));
 			Game.blocks.get(i).fall(42);
 		}
-		this.tetromino = new TetrominoT();
+		Game.tetromino = new TetrominoT();
 	}
 
 	/**

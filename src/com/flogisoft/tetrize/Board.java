@@ -24,6 +24,10 @@ package com.flogisoft.tetrize;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -34,10 +38,18 @@ import javax.swing.JPanel;
  * 
  * @author Fabien LOISON
  */
-public class Board extends JPanel {
+public class Board extends JPanel implements ActionListener {
 
 	public static Image RES_BACKGROUND = null;
 	public static Image RES_BLOCKS = null;
+
+	/**
+	 * The constructor.
+	 */
+	public Board() {
+		this.addKeyListener(new TAdapter());
+		this.setFocusable(true);
+	}
 
 	/**
 	 * Loads the images resources from files.
@@ -60,7 +72,7 @@ public class Board extends JPanel {
 	 */
 	public void paintComponent(Graphics g) {
 		//Draw the background
-		g.drawImage(this.RES_BACKGROUND, 0, 0, this);
+		g.drawImage(Board.RES_BACKGROUND, 0, 0, this);
 		//Draw the blocks
         for (Block block : Game.blocks)
 		{
@@ -70,5 +82,36 @@ public class Board extends JPanel {
         if (Game.tetromino != null) {
         	Game.tetromino.draw(g, this);
         }
+        g.dispose();
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		//Nothing to do
+	}
+
+	/**
+	 * Handle the keyboard events.
+	 */
+	private class TAdapter extends KeyAdapter {
+
+		/**
+		 * Handle the KeyPress event.
+		 */
+		public void keyPressed(KeyEvent ev) {
+			int key = ev.getKeyCode();
+
+			if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP) {
+	            Game.tetromino.rotate();
+	        }
+
+			if (key == KeyEvent.VK_LEFT) {
+	            Game.tetromino.moveLeft();
+	        }
+
+			if (key == KeyEvent.VK_RIGHT) {
+	            Game.tetromino.moveRight();
+	        }
+		}
+    }
 }

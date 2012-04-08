@@ -29,7 +29,7 @@ import javax.swing.JFrame;
 /**
  * The Tetrize main window.
  * 
- * @author Fabien LOSION
+ * @author Fabien LOISON
  */
 public class TetrizeWindow extends JFrame {
 
