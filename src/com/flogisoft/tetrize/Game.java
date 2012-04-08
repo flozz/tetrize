@@ -39,6 +39,7 @@ public class Game {
 	final static public int BLOCK_SIZE = 32; //Pixels
 
 	public static List<Block> blocks = new ArrayList<Block>();
+	public static Tetromino tetromino = null;
 
 	public Board board;
 
@@ -54,12 +55,11 @@ public class Game {
 		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
 
 		//FIXME =================================================================
-		Game.blocks.add(new Block(Block.BLUE, 0, 0));
-		Game.blocks.get(0).fall(10);
-		Game.blocks.add(new Block(Block.GREEN, 1, 0));
-		Game.blocks.get(1).fall(15);
-		Game.blocks.add(new Block(Block.RED, 2, 0));
-		Game.blocks.get(2).fall(5);
+		for (int i=0 ; i<12 ; i++) {
+			Game.blocks.add(new Block(i%7, i, i));
+			Game.blocks.get(i).fall(42);
+		}
+		this.tetromino = new TetrominoT();
 	}
 
 	/**
@@ -72,4 +72,18 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Get the block at the (X, Y) position.
+	 * 
+	 * @return the instance of the block or null.
+	 */
+	public Block getBlock(int x, int y) {
+		for (Block block : Game.blocks)
+		{
+			if (block.getX() == x && block.getY() == y) {
+				return block;
+			}
+		}
+		return null;
+	}
 }

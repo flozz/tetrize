@@ -84,7 +84,7 @@ public class Block {
 			Game.BLOCK_SIZE,                                //To y pos (src)
 			board);
 	}
-	
+
 	/**
 	 * Makes the blocks falling from nbLines lines.
 	 * 
@@ -98,14 +98,35 @@ public class Block {
 	 * Apply the gravity law... if the block have to fall.
 	 */
 	public void applyGravity() {
+		//Check if the block have to fall
 		if (this.fallNbLines <= 0) {
 			return;
 		}
+		//Falling...
 		this.offset += 8;
 		if (this.offset >= Game.BLOCK_SIZE) {
 			this.offset = 0;
 			this.posY += 1;
 			this.fallNbLines -= 1;
 		}
+		//Check for the bottom of the screen
+		if (this.posY >= Game.HEIGHT-1) {
+			this.posY = Game.HEIGHT -1;
+			this.fallNbLines = 0;
+		}
+	}
+
+	/**
+	 * Get the X position of the block.
+	 */
+	public int getX() {
+		return this.posX;
+	}
+
+	/**
+	 * Get the Y position of the block.
+	 */
+	public int getY() {
+		return this.posY;
 	}
 }
