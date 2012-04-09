@@ -24,6 +24,7 @@ package com.flogisoft.tetrize;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 
 
@@ -54,12 +55,7 @@ public class Game {
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
 
-		//FIXME =================================================================
-		/*for (int i=0 ; i<12 ; i++) {
-			Game.blocks.add(new Block(i%7, i, i));
-			Game.blocks.get(i).fall(42);
-		}*/
-		Game.tetromino = new TetrominoT();
+		Game.nextTetromino();
 	}
 
 	/**
@@ -94,7 +90,31 @@ public class Game {
 	 * Select the next tetromino.
 	 */
 	static public void nextTetromino() {
-		//FIXME
-		Game.tetromino = new TetrominoT();
+		Random randomGenerator = new Random();
+		int nextPiece = randomGenerator.nextInt(7);
+
+		switch (nextPiece) {
+		case 0:
+			Game.tetromino = new TetrominoBar();
+			break;
+		case 1:
+			Game.tetromino = new TetrominoT();
+			break;
+		case 2:
+			Game.tetromino = new TetrominoSquared();
+			break;
+		case 3:
+			Game.tetromino = new TetrominoL();
+			break;
+		case 4:
+			Game.tetromino = new TetrominoMirroredL();
+			break;
+		case 5:
+			Game.tetromino = new TetrominoS();
+			break;
+		case 6:
+			Game.tetromino = new TetrominoZ();
+			break;
+		}
 	}
 }

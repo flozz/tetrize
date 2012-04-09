@@ -24,34 +24,34 @@ package com.flogisoft.tetrize;
 
 
 /**
- * T Tetromino
+ * Mirrored L Tetromino
  * 
  * @author Fabien LOISON
  */
-public class TetrominoT extends Tetromino {
+public class TetrominoMirroredL extends Tetromino {
 
-	public TetrominoT() {
+	public TetrominoMirroredL() {
 		super();
-		this.color = Block.GREEN;
+		this.color = Block.PINK;
 		this.tetromino = new int[][] {
 				{0, 0, 0, 0,
-				 1, 1, 1, 0,
-				 0, 1, 0, 0,
-				 0, 0, 0, 0},
-
-				{0, 0, 0, 0,
 				 0, 0, 1, 0,
-				 0, 1, 1, 0,
-				 0, 0, 1, 0},
+				 0, 0, 1, 0,
+				 0, 1, 1, 0},
 
 				{0, 0, 0, 0,
-				 0, 1, 0, 0,
+				 1, 0, 0, 0,
 				 1, 1, 1, 0,
 				 0, 0, 0, 0},
 
 				{0, 0, 0, 0,
-				 0, 1, 0, 0,
 				 0, 1, 1, 0,
-				 0, 1, 0, 0}};
+				 0, 1, 0, 0,
+				 0, 1, 0, 0},
+
+				{0, 0, 0, 0,
+				 0, 0, 0, 0,
+				 1, 1, 1, 0,
+				 0, 0, 1, 0}};
 	}
 }

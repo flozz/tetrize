@@ -24,33 +24,33 @@ package com.flogisoft.tetrize;
 
 
 /**
- * T Tetromino
+ * Z Tetromino
  * 
  * @author Fabien LOISON
  */
-public class TetrominoT extends Tetromino {
+public class TetrominoZ extends Tetromino {
 
-	public TetrominoT() {
+	public TetrominoZ() {
 		super();
-		this.color = Block.GREEN;
+		this.color = Block.NAVY;
 		this.tetromino = new int[][] {
 				{0, 0, 0, 0,
-				 1, 1, 1, 0,
-				 0, 1, 0, 0,
+				 1, 1, 0, 0,
+				 0, 1, 1, 0,
 				 0, 0, 0, 0},
 
 				{0, 0, 0, 0,
 				 0, 0, 1, 0,
 				 0, 1, 1, 0,
-				 0, 0, 1, 0},
+				 0, 1, 0, 0},
 
 				{0, 0, 0, 0,
-				 0, 1, 0, 0,
-				 1, 1, 1, 0,
+				 1, 1, 0, 0,
+				 0, 1, 1, 0,
 				 0, 0, 0, 0},
 
 				{0, 0, 0, 0,
-				 0, 1, 0, 0,
+				 0, 0, 1, 0,
 				 0, 1, 1, 0,
 				 0, 1, 0, 0}};
 	}
