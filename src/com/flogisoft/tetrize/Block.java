@@ -91,7 +91,7 @@ public class Block {
 	 * @param nbLines Falling from ? lines.
 	 */
 	public void fall(int nbLines) {
-		this.fallNbLines = nbLines;
+		this.fallNbLines += nbLines;
 	}
 
 	/**

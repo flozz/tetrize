@@ -77,8 +77,7 @@ public class Game {
 	 * @return the instance of the block or null.
 	 */
 	static public Block getBlock(int x, int y) {
-		for (Block block : Game.blocks)
-		{
+		for (Block block : Game.blocks) {
 			if (block.getX() == x && block.getY() == y) {
 				return block;
 			}
@@ -116,5 +115,39 @@ public class Game {
 			Game.tetromino = new TetrominoZ();
 			break;
 		}
+	}
+
+	/**
+	 * Check if there is full lines on the board.
+	 */
+	static public void checkLines() {
+		int countBlocks[] = new int[Game.HEIGHT];
+		for (Block block : Game.blocks) {
+			countBlocks[block.getY()] += 1;
+		}
+
+		for (int i=0 ; i<Game.HEIGHT ; i++) {
+			if (countBlocks[i] == Game.WIDTH) {
+				removeLine(i);
+			}
+		}
+	}
+
+	/**
+	 * Removes a line and makes falling the blocks that have to fall :).
+	 * 
+	 * @param line the line number.
+	 */
+	static private void removeLine(int line) {
+		List<Block> newBlocks = new ArrayList<Block>();
+		for (Block block : Game.blocks) {
+			if (block.getY() < line) {
+				block.fall(1);
+			}
+			if (block.getY() != line) {
+				newBlocks.add(block);
+			}
+		}
+		Game.blocks = newBlocks;
 	}
 }

@@ -134,7 +134,7 @@ public class Tetromino {
 		this.offset = 0;
 		if (this.checkCollide(0, 1, 0)) {
 			this.copyBlocks();
-			//TODO Check lines
+			Game.checkLines();
 			//TODO Check Game Over
 			Game.nextTetromino();
 		}
@@ -151,7 +151,7 @@ public class Tetromino {
 			this.posY += 1;
 			if (this.checkCollide(0, 1, 0)) {
 				this.copyBlocks();
-				//TODO Check lines
+				Game.checkLines();
 				//TODO Check Game Over
 				Game.nextTetromino();
 			}
