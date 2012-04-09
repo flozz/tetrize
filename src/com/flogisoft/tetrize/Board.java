@@ -42,6 +42,7 @@ public class Board extends JPanel implements ActionListener {
 
 	public static Image RES_BACKGROUND = null;
 	public static Image RES_BLOCKS = null;
+	public static Image RES_GAMEOVER = null;
 
 	/**
 	 * The constructor.
@@ -60,6 +61,8 @@ public class Board extends JPanel implements ActionListener {
 					"/com/flogisoft/tetrize/res/background.png"));
 			Board.RES_BLOCKS = ImageIO.read(getClass().getResourceAsStream(
 					"/com/flogisoft/tetrize/res/tileset.png"));
+			Board.RES_GAMEOVER = ImageIO.read(getClass().getResourceAsStream(
+					"/com/flogisoft/tetrize/res/gameover.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -81,6 +84,10 @@ public class Board extends JPanel implements ActionListener {
         //Draw the tetromino
         if (Game.tetromino != null) {
         	Game.tetromino.draw(g, this);
+        }
+        //Game over
+        if (Game.gameover) {
+        	g.drawImage(Board.RES_GAMEOVER, 0, 0, this);
         }
         g.dispose();
 	}

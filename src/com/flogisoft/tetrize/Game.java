@@ -41,9 +41,11 @@ public class Game {
 
 	public static List<Block> blocks = new ArrayList<Block>();
 	public static Tetromino tetromino = null;
-	
+
 	public static int speed = 1;
 	private static int nSpeed = 10;
+
+	public static boolean gameover = false;
 
 	public Board board;
 
@@ -65,6 +67,9 @@ public class Game {
 	 * Apply the unavoidable gravity law on each blocks.
 	 */
 	public void applyGravity() {
+		if (Game.gameover) {
+			return;
+		}
 		//Tetromino
 		Game.tetromino.applyGravity();
 		//Blocks
@@ -126,6 +131,9 @@ public class Game {
 	static public void checkLines() {
 		int countBlocks[] = new int[Game.HEIGHT];
 		for (Block block : Game.blocks) {
+			if (block.getY() < 0) {
+				continue;
+			}
 			countBlocks[block.getY()] += 1;
 		}
 
@@ -149,8 +157,7 @@ public class Game {
 	static public void checkGameOver() {
 		for (Block block : Game.blocks) {
 			if (block.getY() <= 0) {
-				//TODO Game Over
-				System.out.print("Game Over!\n");
+				Game.gameover = true;
 			}
 		}
 	}
