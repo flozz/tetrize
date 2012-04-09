@@ -23,6 +23,7 @@
 package com.flogisoft.tetrize;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 
 /**
@@ -62,6 +63,14 @@ public class Tetromino {
 	protected int posX = (Game.WIDTH - 4) / 2;
 	protected int posY = -4;
 	protected int offset = 0;
+
+	/**
+	 * The constructor.
+	 */
+	public Tetromino() {
+		Random randomGenerator = new Random();
+		this.rotation = randomGenerator.nextInt(4);
+	}
 
 	/**
 	 * Rotate the tetromino.
@@ -135,7 +144,7 @@ public class Tetromino {
 		if (this.checkCollide(0, 1, 0)) {
 			this.copyBlocks();
 			Game.checkLines();
-			//TODO Check Game Over
+			Game.checkGameOver();
 			Game.nextTetromino();
 		}
 	}
@@ -145,14 +154,14 @@ public class Tetromino {
 	 */
 	public void applyGravity() {
 		//Falling...
-		this.offset += 1;
+		this.offset += Game.speed;
 		if (this.offset >= Game.BLOCK_SIZE) {
 			this.offset = 0;
 			this.posY += 1;
 			if (this.checkCollide(0, 1, 0)) {
 				this.copyBlocks();
 				Game.checkLines();
-				//TODO Check Game Over
+				Game.checkGameOver();
 				Game.nextTetromino();
 			}
 		}

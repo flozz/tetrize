@@ -41,6 +41,9 @@ public class Game {
 
 	public static List<Block> blocks = new ArrayList<Block>();
 	public static Tetromino tetromino = null;
+	
+	public static int speed = 1;
+	private static int nSpeed = 10;
 
 	public Board board;
 
@@ -129,6 +132,25 @@ public class Game {
 		for (int i=0 ; i<Game.HEIGHT ; i++) {
 			if (countBlocks[i] == Game.WIDTH) {
 				removeLine(i);
+				if (Game.speed < Game.BLOCK_SIZE-1) {
+					Game.nSpeed -= 1;
+					if (Game.nSpeed <= 0) {
+						Game.nSpeed = 10;
+						Game.speed += 1;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check for a Game Over.
+	 */
+	static public void checkGameOver() {
+		for (Block block : Game.blocks) {
+			if (block.getY() <= 0) {
+				//TODO Game Over
+				System.out.print("Game Over!\n");
 			}
 		}
 	}
