@@ -66,6 +66,9 @@ public class Game {
 	 * Apply the unavoidable gravity law on each blocks.
 	 */
 	public void applyGravity() {
+		//Tetromino
+		Game.tetromino.applyGravity();
+		//Blocks
 		for (Block block : Game.blocks)
 		{
 			block.applyGravity();
@@ -77,7 +80,7 @@ public class Game {
 	 * 
 	 * @return the instance of the block or null.
 	 */
-	public Block getBlock(int x, int y) {
+	static public Block getBlock(int x, int y) {
 		for (Block block : Game.blocks)
 		{
 			if (block.getX() == x && block.getY() == y) {
@@ -85,5 +88,13 @@ public class Game {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Select the next tetromino.
+	 */
+	static public void nextTetromino() {
+		//FIXME
+		Game.tetromino = new TetrominoT();
 	}
 }

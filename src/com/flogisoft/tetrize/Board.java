@@ -112,6 +112,10 @@ public class Board extends JPanel implements ActionListener {
 			if (key == KeyEvent.VK_RIGHT) {
 	            Game.tetromino.moveRight();
 	        }
+
+			if (key == KeyEvent.VK_DOWN) {
+	            Game.tetromino.moveDown();
+	        }
 		}
     }
 }

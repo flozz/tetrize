@@ -60,7 +60,7 @@ public class Tetromino {
 
 	//Tetromino's position
 	protected int posX = (Game.WIDTH - 4) / 2;
-	protected int posY = 4; //FIXME -4
+	protected int posY = -4;
 	protected int offset = 0;
 
 	/**
@@ -108,7 +108,7 @@ public class Tetromino {
 	 */
 	public void moveLeft() {
 		this.posX -= 1;
-		if (this.checkBorderLeftCollide()) {
+		if (this.checkBorderLeftCollide() || this.checkCollide(0, 1, 0)) {
 			this.posX += 1;
 		}
 	}
@@ -118,9 +118,42 @@ public class Tetromino {
 	 */
 	public void moveRight() {
 		this.posX += 1;
-		if (this.checkBorderRightCollide()) {
+		if (this.checkBorderRightCollide() || this.checkCollide(0, 1, 0)) {
 			this.posX -= 1;
 		}
+	}
+
+	/**
+	 * Move the tetromino to the bottom.
+	 */
+	public void moveDown() {
+		this.posY += 1;
+		this.offset = 0;
+		if (this.checkCollide(0, 1, 0)) {
+			this.copyBlocks();
+			//TODO Check lines
+			//TODO Check Game Over
+			Game.nextTetromino();
+		}
+	}
+
+	/**
+	 * Apply the gravity law.
+	 */
+	public void applyGravity() {
+		//Falling...
+		this.offset += 1;
+		if (this.offset >= Game.BLOCK_SIZE) {
+			this.offset = 0;
+			this.posY += 1;
+			if (this.checkCollide(0, 1, 0)) {
+				this.copyBlocks();
+				//TODO Check lines
+				//TODO Check Game Over
+				Game.nextTetromino();
+			}
+		}
+		//TODO Check collide
 	}
 
 	/**
@@ -162,6 +195,42 @@ public class Tetromino {
 			}
 		}
 
+		return false;
+	}
+
+	/**
+	 * Check for collision.
+	 * 
+	 * @param incX X increment
+	 * @param incY Y increment
+	 * @param incRot rotation increment
+	 * 
+	 * @return true if there is a collide.
+	 */
+	private boolean checkCollide(int incX, int incY, int incRot) {
+		for (int y=0 ; y<4 ; y++) {
+			for (int x=0 ; x<4 ; x++) {
+				if (this.tetromino[(this.rotation+incRot)%4][y*4+x] == 1) {
+					if (Game.getBlock(this.posX+x+incX, this.posY+y+incY) instanceof Block) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Copy the blocks of the tetromino as stand alone blocks in the main list.
+	 */
+	private boolean copyBlocks() {
+		for (int y=0 ; y<4 ; y++) {
+			for (int x=0 ; x<4 ; x++) {
+				if (this.tetromino[this.rotation][y*4+x] == 1) {
+					Game.blocks.add(new Block(this.color, this.posX+x, this.posY+y));
+				}
+			}
+		}
 		return false;
 	}
 }
