@@ -47,6 +47,7 @@ public class Game {
 	private static int nSpeed = 10;
 
 	public static boolean gameover = false;
+	public static boolean paused = false;
 
 	public Board board;
 
@@ -69,7 +70,7 @@ public class Game {
 	 * Apply the unavoidable gravity law on each blocks.
 	 */
 	public void applyGravity() {
-		if (Game.gameover) {
+		if (Game.gameover || Game.paused) {
 			return;
 		}
 		//Tetromino

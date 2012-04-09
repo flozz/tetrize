@@ -43,6 +43,7 @@ public class Board extends JPanel implements ActionListener {
 	public static Image RES_BACKGROUND = null;
 	public static Image RES_BLOCKS = null;
 	public static Image RES_GAMEOVER = null;
+	public static Image RES_PAUSE = null;
 
 	/**
 	 * The constructor.
@@ -63,6 +64,8 @@ public class Board extends JPanel implements ActionListener {
 					"/com/flogisoft/tetrize/res/tileset.png"));
 			Board.RES_GAMEOVER = ImageIO.read(getClass().getResourceAsStream(
 					"/com/flogisoft/tetrize/res/gameover.png"));
+			Board.RES_PAUSE = ImageIO.read(getClass().getResourceAsStream(
+					"/com/flogisoft/tetrize/res/pause.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,17 +79,24 @@ public class Board extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		//Draw the background
 		g.drawImage(Board.RES_BACKGROUND, 0, 0, this);
-		//Draw the blocks
-        for (Block block : Game.blocks)
-		{
-			block.draw(g, this);
+
+		if (!Game.paused) {
+			//Draw the blocks
+	        for (Block block : Game.blocks)
+			{
+				block.draw(g, this);
+			}
+	        //Draw the tetromino
+	        if (Game.tetromino != null) {
+	        	Game.tetromino.draw(g, this);
+	        }
+	        if (Game.nextTetromino != null) {
+	        	Game.nextTetromino.drawAsNext(g, this);
+	        }
 		}
-        //Draw the tetromino
-        if (Game.tetromino != null) {
-        	Game.tetromino.draw(g, this);
-        }
-        if (Game.nextTetromino != null) {
-        	Game.nextTetromino.drawAsNext(g, this);
+        //Pause
+        if (Game.paused) {
+        	g.drawImage(Board.RES_PAUSE, 0, 0, this);
         }
         //Game over
         if (Game.gameover) {
@@ -109,7 +119,19 @@ public class Board extends JPanel implements ActionListener {
 		 * Handle the KeyPress event.
 		 */
 		public void keyPressed(KeyEvent ev) {
+			if (Game.gameover) {
+				return;
+			}
+
 			int key = ev.getKeyCode();
+
+			if (key == KeyEvent.VK_ESCAPE) {
+	            Game.paused = ! Game.paused;
+	        }
+
+			if (Game.paused) {
+				return;
+			}
 
 			if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP) {
 	            Game.tetromino.rotate();
@@ -126,6 +148,7 @@ public class Board extends JPanel implements ActionListener {
 			if (key == KeyEvent.VK_DOWN) {
 	            Game.tetromino.moveDown();
 	        }
+
 		}
     }
 }
