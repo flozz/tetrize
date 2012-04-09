@@ -214,12 +214,15 @@ public class Tetromino {
 					if (Game.getBlock(this.posX+x+incX, this.posY+y+incY) instanceof Block) {
 						return true;
 					}
+					if (this.posY+y+incY >= Game.HEIGHT) {
+						return true;
+					}
 				}
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Copy the blocks of the tetromino as stand alone blocks in the main list.
 	 */

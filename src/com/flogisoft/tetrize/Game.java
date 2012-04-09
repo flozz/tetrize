@@ -55,10 +55,10 @@ public class Game {
 		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
 
 		//FIXME =================================================================
-		for (int i=0 ; i<12 ; i++) {
+		/*for (int i=0 ; i<12 ; i++) {
 			Game.blocks.add(new Block(i%7, i, i));
 			Game.blocks.get(i).fall(42);
-		}
+		}*/
 		Game.tetromino = new TetrominoT();
 	}
 
