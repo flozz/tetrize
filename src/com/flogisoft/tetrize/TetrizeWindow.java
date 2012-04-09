@@ -52,7 +52,7 @@ public class TetrizeWindow extends JFrame {
 		//Window's size
 		Insets insets = this.getInsets();
 		this.setSize(
-			Game.WIDTH * Game.BLOCK_SIZE + insets.left + insets.right, //Width
+			(Game.WIDTH+6) * Game.BLOCK_SIZE + insets.left + insets.right, //Width
 			Game.HEIGHT * Game.BLOCK_SIZE + insets.top + insets.bottom //Height
 			);
 	}

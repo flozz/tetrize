@@ -41,6 +41,7 @@ public class Game {
 
 	public static List<Block> blocks = new ArrayList<Block>();
 	public static Tetromino tetromino = null;
+	public static Tetromino nextTetromino = null;
 
 	public static int speed = 1;
 	private static int nSpeed = 10;
@@ -60,6 +61,7 @@ public class Game {
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
 
+		Game.nextTetromino();
 		Game.nextTetromino();
 	}
 
@@ -99,28 +101,29 @@ public class Game {
 	static public void nextTetromino() {
 		Random randomGenerator = new Random();
 		int nextPiece = randomGenerator.nextInt(7);
+		Game.tetromino = Game.nextTetromino;
 
 		switch (nextPiece) {
 		case 0:
-			Game.tetromino = new TetrominoBar();
+			Game.nextTetromino = new TetrominoBar();
 			break;
 		case 1:
-			Game.tetromino = new TetrominoT();
+			Game.nextTetromino = new TetrominoT();
 			break;
 		case 2:
-			Game.tetromino = new TetrominoSquared();
+			Game.nextTetromino = new TetrominoSquared();
 			break;
 		case 3:
-			Game.tetromino = new TetrominoL();
+			Game.nextTetromino = new TetrominoL();
 			break;
 		case 4:
-			Game.tetromino = new TetrominoMirroredL();
+			Game.nextTetromino = new TetrominoMirroredL();
 			break;
 		case 5:
-			Game.tetromino = new TetrominoS();
+			Game.nextTetromino = new TetrominoS();
 			break;
 		case 6:
-			Game.tetromino = new TetrominoZ();
+			Game.nextTetromino = new TetrominoZ();
 			break;
 		}
 	}

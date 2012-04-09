@@ -85,6 +85,9 @@ public class Board extends JPanel implements ActionListener {
         if (Game.tetromino != null) {
         	Game.tetromino.draw(g, this);
         }
+        if (Game.nextTetromino != null) {
+        	Game.nextTetromino.drawAsNext(g, this);
+        }
         //Game over
         if (Game.gameover) {
         	g.drawImage(Board.RES_GAMEOVER, 0, 0, this);

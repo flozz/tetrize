@@ -116,6 +116,32 @@ public class Tetromino {
 	}
 
 	/**
+	 * Draw the tetromino in the "next tetromino" place.
+	 * 
+	 * @param g the Graphics instance.
+	 * @param board the board
+	 */
+	public void drawAsNext(Graphics g, Board board) {
+		for (int y=0 ; y<4 ; y++) {
+			for (int x=0 ; x<4 ; x++) {
+				if (this.tetromino[this.rotation][y*4+x] == 1) {
+					g.drawImage(
+						Board.RES_BLOCKS,                                     //Source image
+						(Game.WIDTH + x + 1) * Game.BLOCK_SIZE,                    //From x pos (dest)
+						(1 + y) * Game.BLOCK_SIZE + this.offset,      //From y pos (dest)
+						(Game.WIDTH + x + 1) * Game.BLOCK_SIZE + Game.BLOCK_SIZE,  //To x pos (dest)
+						(1 + y) * Game.BLOCK_SIZE + Game.BLOCK_SIZE + this.offset,  //To y pos (dest)
+						this.color * Game.BLOCK_SIZE,                         //From x pos (src)
+						0,                                                    //From y pos(src)
+						this.color * Game.BLOCK_SIZE + Game.BLOCK_SIZE,       //To x pos (src)
+						Game.BLOCK_SIZE,                                      //To y pos (src)
+						board);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Move the tetromino to the left.
 	 */
 	public void moveLeft() {
