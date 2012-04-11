@@ -24,12 +24,15 @@ package com.flogisoft.tetrize;
 
 
 /**
- * Mirrored L Tetromino
+ * Mirrored L Tetromino.
  * 
  * @author Fabien LOISON
  */
 public class TetrominoMirroredL extends Tetromino {
 
+	/**
+	 * The constructor.
+	 */
 	public TetrominoMirroredL() {
 		super();
 		this.color = Block.PINK;

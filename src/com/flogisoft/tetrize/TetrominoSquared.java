@@ -24,12 +24,15 @@ package com.flogisoft.tetrize;
 
 
 /**
- * Squared Tetromino
+ * Squared Tetromino.
  * 
  * @author Fabien LOISON
  */
 public class TetrominoSquared extends Tetromino {
 
+	/**
+	 * The constructor.
+	 */
 	public TetrominoSquared() {
 		super();
 		this.color = Block.ORANGE;

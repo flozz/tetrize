@@ -29,7 +29,7 @@ import java.util.Timer;
 
 
 /**
- * Contains all the variables of a game.
+ * Contains various methods and attributes for a game.
  * 
  * @author Fabien LOSION
  */
@@ -45,7 +45,7 @@ public class Game {
 
 	public static int speed;
 	public static int score;
-	private static int nSpeed = 10;
+	private static int nSpeed = 10; //Remaining lines before the next speedup
 
 	public static boolean gameover = false;
 	public static boolean paused = false;

@@ -85,32 +85,32 @@ public class Board extends JPanel implements ActionListener {
 
 		if (!Game.paused) {
 			//Draw the blocks
-	        for (Block block : Game.blocks)
+			for (Block block : Game.blocks)
 			{
 				block.draw(g, this);
 			}
-	        //Draw the tetromino
-	        if (Game.tetromino != null) {
-	        	Game.tetromino.draw(g, this);
-	        }
-	        if (Game.nextTetromino != null) {
-	        	Game.nextTetromino.drawAsNext(g, this);
-	        }
+			//Draw the tetromino
+			if (Game.tetromino != null) {
+				Game.tetromino.draw(g, this);
+			}
+			if (Game.nextTetromino != null) {
+				Game.nextTetromino.drawAsNext(g, this);
+			}
 		}
-        //Pause
-        if (Game.paused) {
-        	g.drawImage(Board.RES_PAUSE, 0, 0, this);
-        }
-        //Game over
-        if (Game.gameover) {
-        	g.drawImage(Board.RES_GAMEOVER, 0, 0, this);
-        }
-        //Speed
-        this.draw_number(Game.speed, 544, 210, g);
-        //Score
-        this.draw_number(Game.score, 544, 279, g);
-        //
-        g.dispose();
+		//Pause
+		if (Game.paused) {
+			g.drawImage(Board.RES_PAUSE, 0, 0, this);
+		}
+		//Game over
+		if (Game.gameover) {
+			g.drawImage(Board.RES_GAMEOVER, 0, 0, this);
+		}
+		//Speed
+		this.draw_number(Game.speed, 544, 210, g);
+		//Score
+		this.draw_number(Game.score, 544, 279, g);
+		//
+		g.dispose();
 	}
 
 	/**
@@ -154,8 +154,10 @@ public class Board extends JPanel implements ActionListener {
 		 * Handle the KeyPress event.
 		 */
 		public void keyPressed(KeyEvent ev) {
+			//Get the key code
 			int key = ev.getKeyCode();
 
+			//Game is over ?
 			if (Game.gameover) {
 				if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_ENTER) {
 					Game.newGame();
@@ -163,30 +165,33 @@ public class Board extends JPanel implements ActionListener {
 				return;
 			}
 
+			//Toggle pause
 			if (key == KeyEvent.VK_ESCAPE) {
-	            Game.paused = ! Game.paused;
-	        }
+				Game.paused = ! Game.paused;
+			}
 
+			//Stop here if the game is paused
 			if (Game.paused) {
 				return;
 			}
 
+			//Move the tetromino :D
 			if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP) {
-	            Game.tetromino.rotate();
-	        }
+				Game.tetromino.rotate();
+			}
 
 			if (key == KeyEvent.VK_LEFT) {
-	            Game.tetromino.moveLeft();
-	        }
+				Game.tetromino.moveLeft();
+			}
 
 			if (key == KeyEvent.VK_RIGHT) {
-	            Game.tetromino.moveRight();
-	        }
+				Game.tetromino.moveRight();
+			}
 
 			if (key == KeyEvent.VK_DOWN) {
-	            Game.tetromino.moveDown();
-	        }
+				Game.tetromino.moveDown();
+			}
 
 		}
-    }
+	}
 }

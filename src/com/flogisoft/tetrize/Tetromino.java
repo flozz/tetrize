@@ -27,7 +27,7 @@ import java.util.Random;
 
 
 /**
- * The base class for tetrominoes.
+ * Base class for tetrominoes.
  * 
  * @author Fabien LOISON
  */

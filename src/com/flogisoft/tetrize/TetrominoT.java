@@ -24,12 +24,15 @@ package com.flogisoft.tetrize;
 
 
 /**
- * T Tetromino
+ * T Tetromino.
  * 
  * @author Fabien LOISON
  */
 public class TetrominoT extends Tetromino {
 
+	/**
+	 * The constructor.
+	 */
 	public TetrominoT() {
 		super();
 		this.color = Block.GREEN;
