@@ -88,7 +88,7 @@ public class Tetromino {
 				this.posX -= 1;
 			}
 		}
-		if (this.checkCollide(0, 0, 0)) {
+		if (this.checkCollide(0, 1, 0)) {
 			this.rotation = (this.rotation - 1) % 4;
 		}
 	}
