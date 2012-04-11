@@ -44,6 +44,7 @@ public class Game {
 	public static Tetromino nextTetromino = null;
 
 	public static int speed = 1;
+	public static int score = 0;
 	private static int nSpeed = 10;
 
 	public static boolean gameover = false;
@@ -134,6 +135,8 @@ public class Game {
 	 */
 	static public void checkLines() {
 		int countBlocks[] = new int[Game.HEIGHT];
+		int countLines = 0;
+
 		for (Block block : Game.blocks) {
 			if (block.getY() < 0) {
 				continue;
@@ -144,6 +147,7 @@ public class Game {
 		for (int i=0 ; i<Game.HEIGHT ; i++) {
 			if (countBlocks[i] == Game.WIDTH) {
 				removeLine(i);
+				countLines += 1;
 				if (Game.speed < Game.BLOCK_SIZE-1) {
 					Game.nSpeed -= 1;
 					if (Game.nSpeed <= 0) {
@@ -152,6 +156,21 @@ public class Game {
 					}
 				}
 			}
+		}
+
+		switch (countLines) {
+		case 1:
+			Game.score += 10 * Game.speed;
+			break;
+		case 2:
+			Game.score += 30 * Game.speed;
+			break;
+		case 3:
+			Game.score += 50 * Game.speed;
+			break;
+		case 4:
+			Game.score += 80 * Game.speed;
+			break;
 		}
 	}
 

@@ -42,6 +42,7 @@ public class Board extends JPanel implements ActionListener {
 
 	public static Image RES_BACKGROUND = null;
 	public static Image RES_BLOCKS = null;
+	public static Image RES_DIGITS = null; //15x19 px
 	public static Image RES_GAMEOVER = null;
 	public static Image RES_PAUSE = null;
 
@@ -62,6 +63,8 @@ public class Board extends JPanel implements ActionListener {
 					"/com/flogisoft/tetrize/res/background.png"));
 			Board.RES_BLOCKS = ImageIO.read(getClass().getResourceAsStream(
 					"/com/flogisoft/tetrize/res/tileset.png"));
+			Board.RES_DIGITS = ImageIO.read(getClass().getResourceAsStream(
+					"/com/flogisoft/tetrize/res/digits.png"));
 			Board.RES_GAMEOVER = ImageIO.read(getClass().getResourceAsStream(
 					"/com/flogisoft/tetrize/res/gameover.png"));
 			Board.RES_PAUSE = ImageIO.read(getClass().getResourceAsStream(
@@ -102,7 +105,39 @@ public class Board extends JPanel implements ActionListener {
         if (Game.gameover) {
         	g.drawImage(Board.RES_GAMEOVER, 0, 0, this);
         }
+        //Speed
+        this.draw_number(Game.speed, 544, 210, g);
+        //Score
+        this.draw_number(Game.score, 544, 279, g);
+        //
         g.dispose();
+	}
+
+	/**
+	 * Draw a number on the board.
+	 * 
+	 * @param numb the number to draw.
+	 * @param x the X position (in pixel, right).
+	 * @param y the y position (in pixel, top).
+	 * @param g the Graphics instance.
+	 */
+	public void draw_number(int numb, int x, int y, Graphics g) {
+		int offset = 15;
+		do {
+			g.drawImage(
+				Board.RES_DIGITS,      //Source image
+				x-offset,              //From x pos (dest)
+				y,                     //From y pos (dest)
+				x-offset+15,           //To x pos (dest)
+				y+19,                  //To y pos (dest)
+				15 * (numb % 10),      //From x pos (src)
+				0,                     //From y pos(src)
+				15 * (numb % 10) + 15, //To x pos (src)
+				19,                    //To y pos (src)
+				this);
+			numb /= 10;
+			offset += 15;
+		} while (numb > 0);
 	}
 
 	@Override
