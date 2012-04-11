@@ -39,12 +39,12 @@ public class Game {
 	final static public int HEIGHT = 20; //Cell
 	final static public int BLOCK_SIZE = 32; //Pixels
 
-	public static List<Block> blocks = new ArrayList<Block>();
+	public static List<Block> blocks;
 	public static Tetromino tetromino = null;
 	public static Tetromino nextTetromino = null;
 
-	public static int speed = 1;
-	public static int score = 0;
+	public static int speed;
+	public static int score;
 	private static int nSpeed = 10;
 
 	public static boolean gameover = false;
@@ -63,6 +63,19 @@ public class Game {
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new RefreshNUpdate(this), 100, 20);
 
+		Game.newGame();
+	}
+
+	/**
+	 * Let's play :D
+	 */
+	static public void newGame() {
+		Game.blocks = new ArrayList<Block>();
+		Game.speed = 1;
+		Game.score = 0;
+		Game.nSpeed = 10;
+		Game.gameover = false;
+		Game.paused = false;
 		Game.nextTetromino();
 		Game.nextTetromino();
 	}

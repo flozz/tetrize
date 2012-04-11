@@ -154,11 +154,14 @@ public class Board extends JPanel implements ActionListener {
 		 * Handle the KeyPress event.
 		 */
 		public void keyPressed(KeyEvent ev) {
+			int key = ev.getKeyCode();
+
 			if (Game.gameover) {
+				if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_ENTER) {
+					Game.newGame();
+				}
 				return;
 			}
-
-			int key = ev.getKeyCode();
 
 			if (key == KeyEvent.VK_ESCAPE) {
 	            Game.paused = ! Game.paused;
