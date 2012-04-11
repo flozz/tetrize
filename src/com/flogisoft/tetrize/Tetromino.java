@@ -83,6 +83,10 @@ public class Tetromino {
 		}
 		if (this.checkBorderRightCollide()) {
 			this.posX -= 1;
+			//double check for TetrominoBar
+			if (this.checkBorderRightCollide()) {
+				this.posX -= 1;
+			}
 		}
 		if (this.checkCollide(0, 0, 0)) {
 			this.rotation = (this.rotation - 1) % 4;
@@ -191,7 +195,6 @@ public class Tetromino {
 				Game.nextTetromino();
 			}
 		}
-		//TODO Check collide
 	}
 
 	/**

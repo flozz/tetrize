@@ -35,8 +35,8 @@ public class TetrominoBar extends Tetromino {
 		this.color = Block.PURPLE;
 		this.tetromino = new int[][] {
 				{0, 0, 0, 0,
-				 1, 1, 1, 1,
 				 0, 0, 0, 0,
+				 1, 1, 1, 1,
 				 0, 0, 0, 0},
 
 				{0, 1, 0, 0,
@@ -45,8 +45,8 @@ public class TetrominoBar extends Tetromino {
 				 0, 1, 0, 0},
 
 				{0, 0, 0, 0,
-				 1, 1, 1, 1,
 				 0, 0, 0, 0,
+				 1, 1, 1, 1,
 				 0, 0, 0, 0},
 
 				{0, 1, 0, 0,

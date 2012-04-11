@@ -158,7 +158,7 @@ public class Game {
 		}
 
 		for (int i=0 ; i<Game.HEIGHT ; i++) {
-			if (countBlocks[i] == Game.WIDTH) {
+			if (countBlocks[i] >= Game.WIDTH) {
 				removeLine(i);
 				countLines += 1;
 				if (Game.speed < Game.BLOCK_SIZE-1) {
