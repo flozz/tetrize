@@ -1,24 +1,32 @@
-==============================================================================
-                                T E T R I Z E                                 
-==============================================================================
+TETRIZE
+=======
 
 Tetrize is an implementation of the famous Tetris game, in Java.
+
+.. figure:: ./screenshot.png
+   :alt: Tetrize Screenshot
 
 
 How to Build and launch Tetrize:
 --------------------------------
 
-    * First install the Java Development Kit (OpenJDK 6 works fine).
+* First install the Java Development Kit (OpenJDK 6 works fine).
 
-    * Then just type the following command for building the game:
-      $ make
+* Then just type the following command to build the game::
 
-    * For launching Tetrize, uses the following command:
-      $ java -jar tetrize.jar
+    $ make
+
+* to start Tetrize, uses the following command::
+
+    $ java -jar tetrize.jar
 
 
 How to Play:
 ------------
+
+::
+
+    .
 
                 <Left>  Move the tetromino to the left.
                <Right>  Move the tetromino to the right.
@@ -32,6 +40,8 @@ How to Play:
 
 Copyright:
 ----------
+
+::
 
     src/*
         Copyright (C) 2012  Fabien LOISON <flo at flogisoft dot com>
